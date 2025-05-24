@@ -1,0 +1,8 @@
+{
+        "user": "postgres",
+        "password": "pNA(2n", 
+        "host": "localhost",
+        "port": 5432,
+        "db_base": "model",
+        "schema": "my_schema"
+}

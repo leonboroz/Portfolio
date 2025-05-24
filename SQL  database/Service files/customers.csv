@@ -1,0 +1,11 @@
+name,email,registration_date,is_vip,loyalty_points
+Михаил Орлов,m.orlov@example.com,2023-12-15,True,120
+Алексей Михайлов,a.mikhailov@example.com,2023-12-20,False,45
+Ольга Кузнецова,o.kuznetsova@example.com,2023-11-10,True,200
+Сергей Сидоров,s.sidorov@example.com,2023-11-30,False,60
+Мария Петрова,m.petrova@example.com,2023-12-18,False,30
+Анна Смирнова,a.smirnova@example.com,2023-11-05,True,150
+Дмитрий Кузнецов,d.kuznetsov@example.com,2023-12-01,False,80
+Елена Новикова,e.novikova@example.com,2023-11-20,False,25
+Наталья Васильева,n.vasilieva@example.com,2023-11-10,True,170
+Иван Иванов,i.ivanov@example.com,2023-12-10,False,15
