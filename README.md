@@ -21,26 +21,27 @@
 
 ## Перечень проектов
 
-1. 📂[API_date_load](#api_date_load)
-2. 📂[Python_visualization_work](#python_visualization_work)
-3. 📂[Keys_with_ETL_apt_data](#keys_with_etl_apt_data)
-4. 📂[Generation_and_analysis_data](#Generation_and_analysis_data)
-5. 📂[SQL_balance_analysis](#sql_balance_analysis)
-6. 📂[Ad_campaign_impact](#ad_campaign_impact)
-7. 📂[Other_tools](#other_tools)
+1. 📂[SQL_database](#sql_database)
+2. 📂[API_date_load](#api_date_load)
+3. 📂[Python_visualization_work](#python_visualization_work)
+4. 📂[Keys_with_ETL_apt_data](#keys_with_etl_apt_data)
+5. 📂[Generation_and_analysis_data](#Generation_and_analysis_data)
+6. 📂[SQL_balance_analysis](#sql_balance_analysis)
+7. 📂[Ad_campaign_impact](#ad_campaign_impact)
+8. 📂[Other_tools](#other_tools)
 
 
 
 ## Проекты
 
-###  [SQL_database](SQL_database/)
+###  [SQL_database](sql_database/)
 
 Описание: Этот проект — симуляция работы аналитика с «переменчивым» заказчиком, где каждый новый этап влечёт за собой изменения в структуре базы и требованиях.  
 Цель — пройти полный цикл: от проектирования и наполнения БД до анализа данных и подготовки к визуализации.
 
 - 💻**Языки и технологии**: Python, PostgeSQL,SQLAlchemy,JSON,Pickle,CSV
-- 🔍[Как использовать](SQL_database/README.md#как-запустить)
-- 📄[Подробнее о проекте в `README`](SQL_database/README.md).
+- 🔍[Как использовать](sql_database/README.md#как-запустить)
+- 📄[Подробнее о проекте в `README`](SQL_database/README.md)
 
 
 ### [API_date_load](API_date_load/)
