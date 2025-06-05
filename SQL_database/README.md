@@ -15,7 +15,7 @@
 
 ## Схема базы данных (архитектура)
 
-[Схема базы данных](SQL_database/DB_Design_Visualization/YMy_shema_diagramm.png)
+![Схема базы данных](SQL_database/DB_Design_Visualization/YMy_shema_diagramm.png)
 
 
 Цель — пройти полный цикл: от проектирования и наполнения БД до анализа данных и подготовки к визуализации.
