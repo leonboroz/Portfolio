@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: my_schema    # имя схемы в базе (schema)
+    database: model   # опционально, если нужно указать БД (особенно для BigQuery, Snowflake)
+    description: Схема с сырыми данными
+    tables:
+      - name: orders  # имя таблицы в этой схеме
+        description: Заказы из продакшн-системы
+      - name: customers
+        description: Клиенты
+      - name: gift_cards
+        description: Подарочные карты
+      - name: suppliers
+        description: Поставщики продуктов
+      - name: products
+        description: Продукты
+      - name: orderitem
+        description: Раскадровка заказов
+      
