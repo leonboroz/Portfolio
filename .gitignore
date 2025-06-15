@@ -3,3 +3,4 @@ env/
 *.log
 My  hard but very interesting  project/config_API.json
 My  hard but very interesting  project/config_DB.json
+*.exe

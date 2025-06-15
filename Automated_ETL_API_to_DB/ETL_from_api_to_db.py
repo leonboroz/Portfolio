@@ -1,3 +1,4 @@
+# %%
 # Импортируем модули
 import datetime
 from datetime import datetime,timedelta,date
@@ -11,18 +12,33 @@ import os
 import glob
 import logging
 
-# Подготавливем переменные к API
-with open('config_API.json') as config_file:
-    config=json.load(config_file)
-URL=config['url']
-client=config['client']
-client_key=config['client_key']
-interval=config['interval']
-zero_time=datetime.now(pytz.utc).replace(hour=0,minute=0,second=0,microsecond=0)
-start=(zero_time-timedelta(days=interval)).strftime("%Y-%m-%d %H:%M:%S.%f")
-end=zero_time.strftime("%Y-%m-%d %H:%M:%S.%f")
-param={'client':client,'client_key':client_key,'start':start,'end':end}
 
+# %%
+with open("task_log.txt", "a", encoding="utf-8") as f:
+    f.write(f"Запуск из планировщика. Текущая директория: {os.getcwd()}\n")
+
+# %%
+# Подготавливем переменные к API
+# путь к config_API.json рядом с .exe
+base_dir = os.path.dirname(os.path.abspath(__file__))
+config_path = os.path.join(base_dir, "config_API.json")
+
+with open(config_path, "r", encoding="utf-8") as config_file:
+    config = json.load(config_file)
+
+URL = config['url']
+client = config['client']
+client_key = config['client_key']
+interval = config['interval']
+
+zero_time = datetime.now(pytz.utc).replace(hour=0, minute=0, second=0, microsecond=0)
+start = (zero_time - timedelta(days=interval)).strftime("%Y-%m-%d %H:%M:%S.%f")
+end = zero_time.strftime("%Y-%m-%d %H:%M:%S.%f")
+
+param = {'client': client, 'client_key': client_key, 'start': start, 'end': end}
+
+
+# %%
 #Создадим класс подключения и отключения к API и обработки ошибок
 class APIClient:
     __instance = None  
@@ -67,6 +83,8 @@ class APIClient:
         logging.info("Соединение закрыто")
         APIClient.__instance= None  # Сбрасываем Singleton       
 
+
+# %%
 #Создаем класс загрузки сырых данных
 class Dataload:
     def __init__(self,api_client):        
@@ -93,7 +111,9 @@ class Dataload:
             logging.warning ('полученные данные не JSON')
             return None
       
-      # Создаем класс очистки данных и подготовки к загрузке в БД
+
+# %%
+# Создаем класс очистки данных и подготовки к загрузке в БД
 class Transform:
     def __init__(self,data):
         self.data=data 
@@ -120,20 +140,27 @@ class Transform:
         ]
         
         return data_to_load
-    
-    # Подготовим пересенные к SQL подключению
-with open ('config_DB.json') as fill:
-    data1=json.load(fill)
-DBNAME=data1['dbname_start']
-USER=data1['user']
-PASSWORD=data1['password']
-HOST=data1['host']
-PORT=data1['port']
-base=data1['new_base']
-schema=data1['new_schema']
-table=data1['new_table']
-parametrs=', '.join(data1['stroc'])
 
+# %%
+# Подготовим пересенные к SQL подключению
+base_dir = os.path.dirname(os.path.abspath(__file__))
+db_config_path = os.path.join(base_dir, "config_DB.json")
+
+with open(db_config_path, "r", encoding="utf-8") as fill:
+    data1 = json.load(fill)
+
+DBNAME = data1['dbname_start']
+USER = data1['user']
+PASSWORD = data1['password']
+HOST = data1['host']
+PORT = data1['port']
+base = data1['new_base']
+schema = data1['new_schema']
+table = data1['new_table']
+parametrs = ', '.join(data1['stroc'])
+
+
+# %%
 class Database:
     def __init__(self, dbname, user, password, host, port, base, schema, table, parameters, data):
         self.dbname = dbname
@@ -220,7 +247,8 @@ class Database:
         conn.close()
         logging.info ("Курсор и соединение закрыто")
 
-        # Создадим класс логгинга
+# %%
+# Создадим класс логгинга
 class LogManager:
     def __init__(self, log_dir="logs", log_file="app.log", days_to_keep=3):
         """Инициализация логирования с кодировкой UTF-8"""
@@ -263,12 +291,15 @@ class LogManager:
             file_mtime = os.path.getmtime(log_file)
             file_date = datetime.fromtimestamp(file_mtime)
 
-            if file_date < now - timedelta(days=self.days_to_keep):
+            if file_date <= now - timedelta(days=self.days_to_keep):
                 os.remove(log_file)
-                print(f"Удален старый лог: {log_file}")
+                logging.info(f"Удален старый лог: {log_file}")
 
 
 
+
+
+# %%
 a=LogManager(log_file=f"{datetime.now().strftime('%Y-%m-%d')}.log")
 s1=APIClient.get_instance(URL,param)
 d=Dataload(s1)
@@ -279,3 +310,5 @@ data=d.transf()
 x=Database(DBNAME,USER,PASSWORD,HOST,PORT,base,schema,table,parametrs,data)
 #x.connect_and_create_base()
 x.loading_to_base()
+
+
