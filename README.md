@@ -22,7 +22,7 @@
 ## Перечень проектов
 
 1. 📂[SQL_database](#sql_database)
-2. 📂[API_date_load](#api_date_load)
+2. 📂[Automated_ETL_API_to_DB](#automated_etl_api_to_db)
 3. 📂[Python_visualization_work](#python_visualization_work)
 4. 📂[Keys_with_ETL_apt_data](#keys_with_etl_apt_data)
 5. 📂[Generation_and_analysis_data](#Generation_and_analysis_data)
